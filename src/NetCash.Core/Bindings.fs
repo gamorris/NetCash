@@ -235,8 +235,8 @@ extern GNCNumericErrorCode  gnc_numeric_check(gnc_numeric a)
 [<DllImport(NativeLibraries.gncEngine)>]
 extern gint gnc_numeric_compare(gnc_numeric a, gnc_numeric b)
 
-[<DllImport(NativeLibraries.gncEngine); return: MarshalAs(UnmanagedType.I1)>]
-extern bool string_to_gnc_numeric([<MarshalAs(UnmanagedType.LPUTF8Str)>]string str, gnc_numeric& n)
+[<DllImport(NativeLibraries.gncEngine)>]
+extern gnc_numeric gnc_numeric_from_string([<MarshalAs(UnmanagedType.LPUTF8Str)>]string str)
 
 [<DllImport(NativeLibraries.gncEngine)>]
 extern nativeint gnc_numeric_errorCode_to_string(GNCNumericErrorCode error_code)

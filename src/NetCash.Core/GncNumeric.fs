@@ -62,8 +62,11 @@ type GncNumeric =
         |> GncNumeric
 
     static member private FromString(s) =
-        let mutable n = Bindings.gnc_numeric_zero ()
-        (Bindings.string_to_gnc_numeric (s, &n), n)
+        let n = Bindings.gnc_numeric_from_string (s)
+        if Bindings.gnc_numeric_check(n) = Bindings.GNCNumericErrorCode.GNC_ERROR_OK then
+            (true, n)
+        else  // Note: TryParse expects a valid gnc_numeric object, even when we return false. Use zero as a default.
+            (false, Bindings.gnc_numeric_zero())
 
     static member Parse(s) =
         let (success, n) = GncNumeric.FromString s
